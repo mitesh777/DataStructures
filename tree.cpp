@@ -149,42 +149,42 @@ bool checkBST(node* root, int min_data = INT_MIN, int max_data = INT_MAX)
 
 node* deleteNode(node *root, int data)                  //bst
 {
-	if(root == NULL)
+    if(root == NULL)
         return root;
-	else if(data < root->data)
+    else if(data < root->data)
         root->left = deleteNode(root->left, data);
-	else if(data > root->data)
+    else if(data > root->data)
         root->right = deleteNode(root->right,data);
-	else
-	{
-		if(root->left == NULL && root->right == NULL)
-		{
-			delete root;
-			root = NULL;
-		}
-		else if(root->left == NULL)
-		{
-			node *temp = root;
-			root = root->right;
-			delete temp;
-		}
-		else if(root->right == NULL)
-		{
-			node *temp = root;
-			root = root->left;
-			delete temp;
-		}
-		else
-		{
-			node *temp = root->right;
+    else
+    {
+        if(root->left == NULL && root->right == NULL)
+        {
+            delete root;
+            root = NULL;
+        }
+        else if(root->left == NULL)
+        {
+            node *temp = root;
+            root = root->right;
+            delete temp;
+        }
+        else if(root->right == NULL)
+        {
+            node *temp = root;
+            root = root->left;
+            delete temp;
+        }
+        else
+        {
+            node *temp = root->right;
             while(temp->left != NULL)
                 temp = temp->left;
             //temp is now the minimum element in the right subtree
-			root->data = temp->data;
-			root->right = deleteNode(root->right, temp->data);
-		}
-	}
-	return root;
+            root->data = temp->data;
+            root->right = deleteNode(root->right, temp->data);
+        }
+    }
+    return root;
 }
 
 int main()
